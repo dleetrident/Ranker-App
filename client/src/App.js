@@ -1,21 +1,28 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import { heroesActions } from "./store/heroes-slice";
+
+import Test from "./components/Test";
+import { useDispatch } from "react-redux";
 
 function App() {
+  const dispatch = useDispatch();
   const [data, setData] = React.useState(null);
 
   React.useEffect(() => {
+    dispatch(heroesActions.outputTwoHeroes());
     fetch("/api")
       .then((res) => res.json())
       .then((data) => setData(data.message));
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>{!data ? "Loading..." : data}</p>
+        <Test />
         <a
           className="App-link"
           href="https://reactjs.org"

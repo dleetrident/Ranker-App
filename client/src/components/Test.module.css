@@ -1,0 +1,17 @@
+.herodivleft {
+  height: 1200px;
+  float: left;
+  background-image: url("../../public/images/Vision.webp");
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+
+.herodivright {
+  height: 1200px;
+  float: right;
+  background-image: url("../../public/images/Thanos.webp");
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+
+/* TO DO: Move images to dynamic <img /> elements, and use object-fit css instead of background image */
