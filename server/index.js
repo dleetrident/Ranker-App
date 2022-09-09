@@ -1,14 +1,36 @@
 const path = require("path");
 const express = require("express");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const axios = require("axios");
 
 const PORT = process.env.PORT || 3001;
 
 const app = express();
 
 app.use(express.static(path.resolve(__dirname, "../client/build")));
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.get("/api", (req, res) => {
   res.json({ message: "Hello from server!!!" });
+});
+
+app.get("/heroes", (req, res) => {
+  const options = {
+    method: "GET",
+    url: "https://ranker-app-heroes-default-rtdb.europe-west1.firebasedatabase.app/heroes.json",
+  };
+  axios
+    .request(options)
+    .then((response) => {
+      console.log(response);
+      res.json(response.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 });
 
 app.get("*", (req, res) => {
