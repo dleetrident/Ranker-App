@@ -16,7 +16,7 @@ function App() {
     fetch("/api")
       .then((res) => res.json())
       .then((data) => setData(data.message));
-    fetch("http://localhost:3001/heroes")
+    fetch("/heroes")
       .then((res) => res.json())
       .then((data) => setHeroes(data));
   }, [dispatch, data]);
