@@ -25,7 +25,6 @@ app.get("/heroes", (req, res) => {
   axios
     .request(options)
     .then((response) => {
-      console.log(response);
       res.json(response.data);
     })
     .catch((error) => {

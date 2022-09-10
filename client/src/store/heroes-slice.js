@@ -3,25 +3,16 @@ import { createSlice } from "@reduxjs/toolkit";
 const heroesSlice = createSlice({
   name: "heroes",
   initialState: {
-    heroesList: [
-      "Hulk",
-      "Iron Man",
-      "Captain America",
-      "Spider Man",
-      "Scarlet Witch",
-      "Dr Strange",
-      "Thor",
-      "Ant Man",
-      "Vision",
-      "Black Panther",
-      "Captain Marvel",
-      "Thanos",
-    ],
+    heroesList: [],
     listProgress: 0,
     outputHeroes: [],
     selectedHeroes: [],
   },
   reducers: {
+    inputHeroes(state, action) {
+      state.heroesList = action.payload;
+      console.log(state.heroesList);
+    },
     outputTwoHeroes(state, action) {
       if (state.listProgress === 6 && action.payload === "btnClicked") {
         state.listProgress = 0;
