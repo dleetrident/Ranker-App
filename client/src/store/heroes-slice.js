@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 const heroesSlice = createSlice({
   name: "heroes",
@@ -7,6 +7,8 @@ const heroesSlice = createSlice({
     listProgress: 0,
     outputHeroes: [],
     selectedHeroes: [],
+    listCompletion: 0,
+    listComplete: false,
   },
   reducers: {
     inputHeroes(state, action) {
@@ -14,23 +16,41 @@ const heroesSlice = createSlice({
       console.log(state.heroesList);
     },
     outputTwoHeroes(state, action) {
-      if (state.listProgress === 6 && action.payload === "btnClicked") {
-        state.listProgress = 0;
-        console.log("===6");
-      } else if (action.payload === "btnClicked") {
-        state.listProgress += 2;
-        console.log("+=2");
+      if (state.listCompletion !== 23) {
+        if (state.listProgress === 10 && action.payload === "btnClicked") {
+          state.heroesList.sort((a, b) => {
+            return b.rating - a.rating;
+          });
+          state.listProgress = 0;
+          state.listCompletion++;
+          console.log("===6");
+        } else if (action.payload === "btnClicked") {
+          state.listProgress += 2;
+          state.listCompletion++;
+          console.log("+=2");
+        } else {
+          state.listProgress = 0;
+        }
       } else {
-        state.listProgress = 0;
+        state.heroesList.sort((a, b) => {
+          return b.rating - a.rating;
+        });
+        state.listComplete = true;
       }
-      const heroesList = state.heroesList;
+
       const index = state.listProgress;
-      console.log({ heroesList, index });
       state.outputHeroes = state.heroesList.slice(index, index + 2);
-      console.log(state.outputHeroes);
+      console.log(state.outputHeroes, current(state.heroesList));
     },
     selectHero(state, action) {
       state.selectedHeroes.push(action.payload);
+      const selectedHero = state.heroesList.map((hero) => {
+        if (hero.id === action.payload) {
+          return (hero.rating = hero.rating + 1);
+        }
+      });
+      console.log(selectedHero);
+      console.log(current(state.heroesList));
     },
   },
 });
