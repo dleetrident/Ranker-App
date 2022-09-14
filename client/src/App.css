@@ -38,5 +38,6 @@
 }
 
 html {
+  background-image: url("./resources/images/background.jpg");
   overflow-y: scroll;
 }

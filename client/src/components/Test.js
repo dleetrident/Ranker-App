@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { heroesActions } from "../store/heroes-slice";
+import Card from "../UI/Card";
 import RankComplete from "./RankComplete";
 import classes from "./Test.module.css";
 
@@ -10,10 +11,19 @@ const Test = () => {
   const { outputHeroes: heroes, selectedHeroes, listComplete } = heroesRdx;
 
   // const { selectedHeroesState, setSelectedHeroesState } = useState("");
-  const [firstNameState, setFirstNameState] = useState("");
-  const [firstId, setFirstId] = useState("");
-  const [secondNameState, setSecondNameState] = useState("");
-  const [secondId, setSecondId] = useState("");
+
+  const [first, setFirst] = useState({
+    id: "",
+    image: "",
+    link: "",
+    name: "",
+  });
+  const [second, setSecond] = useState({
+    id: "",
+    image: "",
+    link: "",
+    name: "",
+  });
 
   useEffect(() => {
     // const objNames = heroes[0].children;
@@ -21,38 +31,56 @@ const Test = () => {
     // const first = objNames[0];
     // const second = objNames[1];
     // console.log(objNames);
-    setFirstNameState(heroes[0].name);
-    setFirstId(heroes[0].id);
-    setSecondNameState(heroes[1].name);
-    setSecondId(heroes[1].id);
+
+    setFirst(heroes[0]);
+    setSecond(heroes[1]);
   }, [heroes]);
 
   const heroClickedHandler = (event) => {
     dispatch(heroesActions.selectHero(event.target.id));
     dispatch(heroesActions.outputTwoHeroes("btnClicked"));
   };
-
+  console.log(first, second);
   return (
     <section>
       {listComplete ? (
         <RankComplete />
       ) : (
-        <div>
+        <div className={classes.container}>
           {" "}
-          <div className={classes.herodivleft}>
-            <h1>First Hero (number)</h1>
-            <h1>{firstNameState}</h1>
-            <button id={firstId} onClick={heroClickedHandler}>
-              Pick Hero
-            </button>
-          </div>
-          <div className={classes.herodivright}>
-            <h1>Second Hero (number)</h1>
-            <h1>{secondNameState}</h1>
-            <button id={secondId} onClick={heroClickedHandler}>
-              Pick Hero
-            </button>
-          </div>
+          <Card>
+            <div className={classes.herodivleft}>
+              <img
+                className={classes.image}
+                src={require(`../resources/images/${
+                  first.image ? first.image : "Loading.png"
+                }`)}
+                alt={first.id}
+              />
+
+              <h1>{first.name}</h1>
+              <button id={first.id} onClick={heroClickedHandler}>
+                Pick Hero
+              </button>
+            </div>
+          </Card>
+          <Card>
+            {" "}
+            <div className={classes.herodivright}>
+              <img
+                className={classes.image}
+                src={require(`../resources/images/${
+                  second.image ? second.image : "Loading.png"
+                }`)}
+                alt={second.id}
+              />
+
+              <h1>{second.name}</h1>
+              <button id={second.id} onClick={heroClickedHandler}>
+                Pick Hero
+              </button>
+            </div>
+          </Card>
           {/* <div className={classes.heroList}>
         {" "}
         <h1>Picked Heroes (number): {selectedHeroes}</h1>
