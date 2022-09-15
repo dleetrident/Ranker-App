@@ -10,11 +10,12 @@
 }
 
 .card {
-  background-color: rgba(245, 249, 250, 0.92);
+  background-color: rgba(22, 27, 28, 0.95);
   border: 1px solid;
   border-color: #18a0db;
   border-radius: 0.5%;
   box-shadow: 0 0px 10px gray;
+  color: white;
   width: 80%;
   margin: 5%;
 

@@ -1,37 +1,35 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { heroesActions } from "../store/heroes-slice";
+import Button from "../UI/Button";
 import Card from "../UI/Card";
+import HeroDetails from "./HeroDetails";
 import RankComplete from "./RankComplete";
 import classes from "./Test.module.css";
 
 const Test = () => {
   const dispatch = useDispatch();
   const heroesRdx = useSelector((store) => store.heroes);
-  const { outputHeroes: heroes, selectedHeroes, listComplete } = heroesRdx;
-
-  // const { selectedHeroesState, setSelectedHeroesState } = useState("");
+  const { outputHeroes: heroes, listComplete } = heroesRdx;
 
   const [first, setFirst] = useState({
     id: "",
     image: "",
     link: "",
     name: "",
+    powers: [],
+    rating: "",
   });
   const [second, setSecond] = useState({
     id: "",
     image: "",
     link: "",
     name: "",
+    powers: [],
+    rating: "",
   });
 
   useEffect(() => {
-    // const objNames = heroes[0].children;
-    // console.log(objNames);
-    // const first = objNames[0];
-    // const second = objNames[1];
-    // console.log(objNames);
-
     setFirst(heroes[0]);
     setSecond(heroes[1]);
   }, [heroes]);
@@ -40,7 +38,7 @@ const Test = () => {
     dispatch(heroesActions.selectHero(event.target.id));
     dispatch(heroesActions.outputTwoHeroes("btnClicked"));
   };
-  console.log(first, second);
+
   return (
     <section>
       {listComplete ? (
@@ -59,11 +57,23 @@ const Test = () => {
               />
 
               <h1>{first.name}</h1>
-              <button id={first.id} onClick={heroClickedHandler}>
+              <Button id={first.id} onClick={heroClickedHandler}>
                 Pick Hero
-              </button>
+              </Button>
             </div>
+            <HeroDetails
+              id={first.id}
+              powers={first.powers}
+              rating={first.rating}
+            />
           </Card>
+          <div className={classes.vsdiv}>
+            <img
+              className={classes.vslogo}
+              src={require("../resources/images/vs.png")}
+              alt="VS"
+            />
+          </div>
           <Card>
             {" "}
             <div className={classes.herodivright}>
@@ -76,10 +86,15 @@ const Test = () => {
               />
 
               <h1>{second.name}</h1>
-              <button id={second.id} onClick={heroClickedHandler}>
+              <Button id={second.id} onClick={heroClickedHandler}>
                 Pick Hero
-              </button>
+              </Button>
             </div>
+            <HeroDetails
+              id={second.id}
+              powers={second.powers}
+              rating={second.rating}
+            />
           </Card>
           {/* <div className={classes.heroList}>
         {" "}

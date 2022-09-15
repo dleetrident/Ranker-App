@@ -46,4 +46,17 @@
     transform: rotateX(10);
   }
 }
+
+.vsdiv {
+  background-color: rgba(22, 27, 28, 0.95);
+  border-radius: 100%;
+  display: inline-block;
+  margin-top: 35%;
+  position: relative;
+  max-width: 120px;
+  max-height: 120px;
+}
+.vslogo {
+  max-width: 100%;
+}
 /* TO DO: Move images to dynamic <img /> elements, and use object-fit css instead of background image */

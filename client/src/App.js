@@ -5,6 +5,7 @@ import { heroesActions } from "./store/heroes-slice";
 
 import Test from "./components/Test";
 import { useDispatch } from "react-redux";
+import Button from "./UI/Button";
 
 function App() {
   const dispatch = useDispatch();
@@ -47,9 +48,13 @@ function App() {
   // }, [dispatch, heroes]);
   return (
     <div className="App">
-      <button onClick={startAppHandler}>START</button>
-
-      {start && <Test />}
+      {start ? (
+        <Test />
+      ) : (
+        <div className="center">
+          <Button onClick={startAppHandler}>START</Button>
+        </div>
+      )}
     </div>
   );
 }

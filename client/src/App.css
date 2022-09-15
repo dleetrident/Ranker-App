@@ -41,3 +41,11 @@ html {
   background-image: url("./resources/images/background.jpg");
   overflow-y: scroll;
 }
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -50px;
+}
