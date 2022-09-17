@@ -1,5 +1,4 @@
 const HeroDetails = (props) => {
-  console.log(props.powers);
   return (
     <div>
       {props.powers.map((power) => (

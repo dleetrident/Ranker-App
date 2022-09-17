@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { heroesActions } from "./store/heroes-slice";
+import { heroesActions, sendRatingData } from "./store/heroes-slice";
 
 import Test from "./components/Test";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "./UI/Button";
 
 function App() {
@@ -12,6 +12,8 @@ function App() {
   const [data, setData] = useState(null);
   const [heroes, setHeroes] = useState(null);
   const [start, setStart] = useState(false);
+  const appComplete = useSelector((store) => store.heroes.listComplete);
+  const finalHeroes = useSelector((store) => store.heroes.heroesList);
 
   useEffect(() => {
     fetch("/api")
@@ -33,6 +35,14 @@ function App() {
     };
     fetchHeroes();
   }, [dispatch]);
+
+  // useEffect(() => {
+  //   if (!appComplete) {
+  //     return;
+  //   }
+  //   console.log(finalHeroes);
+  //   dispatch(sendRatingData(finalHeroes));
+  // }, [dispatch, appComplete, finalHeroes]);
 
   const startAppHandler = () => {
     dispatch(heroesActions.inputHeroes(heroes));

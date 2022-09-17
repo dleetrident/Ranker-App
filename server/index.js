@@ -32,6 +32,27 @@ app.get("/heroes", (req, res) => {
     });
 });
 
+app.put("/heroes", (req, res) => {
+  console.log(req.body);
+  const options = {
+    method: "PUT",
+    url: "https://ranker-app-heroes-default-rtdb.europe-west1.firebasedatabase.app/heroes.json",
+    body: req.body,
+    data: req.body,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  axios
+    .request(options)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
+
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
 });
