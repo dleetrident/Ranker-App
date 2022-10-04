@@ -1,4 +1,5 @@
 .button {
+  box-shadow: 0 0px 10px #6fe8f5;
   height: 40px;
   width: 120px;
   background-color: transparent;

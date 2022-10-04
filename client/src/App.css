@@ -1,3 +1,13 @@
+@font-face {
+  font-family: "HeadingFont";
+  src: url("./resources/fonts/Sansation_Bold.ttf");
+}
+
+@font-face {
+  font-family: "TextFont";
+  src: url("./resources/fonts/Sansation_Light.ttf");
+}
+
 .App {
   text-align: center;
 }
@@ -48,4 +58,14 @@ html {
   left: 50%;
   margin-top: -50px;
   margin-left: -50px;
+}
+
+h1,
+h3,
+button {
+  font-family: "HeadingFont";
+}
+
+p {
+  font-family: "TextFont";
 }
