@@ -1,4 +1,5 @@
 import { createSlice, current } from "@reduxjs/toolkit";
+import EloRating from "elo-rating";
 
 const heroesSlice = createSlice({
   name: "heroes",
@@ -6,7 +7,6 @@ const heroesSlice = createSlice({
     heroesList: [],
     listProgress: 0,
     outputHeroes: [],
-    selectedHeroes: [],
     listCompletion: 0,
     listComplete: false,
     sendList: [],
@@ -33,12 +33,17 @@ const heroesSlice = createSlice({
           state.listProgress = 0;
         }
       } else {
+        // sort by score before /RankComplete renders
         state.heroesList.sort((a, b) => {
-          return b.score - a.score;
+          if (a.score === b.score) {
+            return b.rating - a.rating;
+          } else {
+            return b.score - a.score;
+          }
         });
-        state.heroesList.map((hero) => {
-          hero.rating = hero.rating + hero.score;
-        });
+        // state.heroesList.map((hero) => {
+        //   hero.rating = hero.rating + hero.score;
+        // });
         state.listComplete = true;
         // sendRatingData(state.heroesList);
       }
@@ -49,14 +54,38 @@ const heroesSlice = createSlice({
     sendData(state, action) {
       sendRatingData(action.payload);
     },
-    selectHero(state, action) {
-      state.selectedHeroes.push(action.payload);
+    updateScore(state, action) {
+      const winner = action.payload[0];
+      console.log(winner);
+      // update score
       const selectedHero = state.heroesList.map((hero) => {
-        if (hero.id === action.payload) {
+        if (hero.id === winner.id) {
           return (hero.score = hero.score + 1);
         }
       });
-      console.log(selectedHero);
+    },
+    updateRating(state, action) {
+      const winner = action.payload.winner[0];
+      const loser = action.payload.loser[0];
+      // update rating
+
+      var result = EloRating.calculate(winner.rating, loser.rating);
+      const updateWinner = state.heroesList.map((hero) => {
+        if (hero.id === winner.id) {
+          return (hero.rating = result.playerRating);
+        }
+      });
+      const updateLoser = state.heroesList.map((hero) => {
+        if (hero.id === loser.id) {
+          return (hero.rating = result.opponentRating);
+        }
+      });
+      console.log([
+        winner.name,
+        result.playerRating,
+        loser.name,
+        result.opponentRating,
+      ]);
     },
     sortListByRating(state, action) {
       const heroList = action.payload;

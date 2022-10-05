@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { heroesActions } from "../store/heroes-slice";
 import Card from "../UI/Card";
+import classes from "./RankComplete.module.css";
 
 const RankComplete = () => {
   const scoreList = useSelector((store) => store.heroes.heroesList);
@@ -11,12 +12,7 @@ const RankComplete = () => {
 
   useEffect(() => {
     dispatch(heroesActions.sortListByRating(scoreList));
-    // const sendList = ratingList.map((hero) => {
-    //   return {
-    //     ...hero,
-    //     score: 0,
-    //   };
-    // });
+    // establish former rating
 
     dispatch(heroesActions.sendData(scoreList));
   }, [dispatch, scoreList, ratingList]);
@@ -24,21 +20,25 @@ const RankComplete = () => {
   return (
     <Card>
       <h1>Completed List</h1>
-      <ul>
-        {scoreList.map((hero) => (
-          <li key={hero.id}>
-            Name: {hero.name} - Score: {hero.score}
-          </li>
-        ))}
-      </ul>
-      <p> VS </p>
-      <ul>
-        {ratingList.map((hero) => (
-          <li key={hero.id}>
-            Name: {hero.name} - Score: {hero.rating}
-          </li>
-        ))}
-      </ul>
+      <div className={classes.container}>
+        <ol>
+          {scoreList.map((hero) => (
+            <li key={hero.id}>
+              {hero.name} <br /> <b>Your Score: </b> {hero.score}{" "}
+              <b>New Rating: </b>
+              {hero.rating}
+            </li>
+          ))}
+        </ol>
+        <p> VS </p>
+        <ol>
+          {ratingList.map((hero) => (
+            <li key={hero.id}>
+              {hero.name} <br /> <b>Old Rating: </b> {hero.rating}
+            </li>
+          ))}
+        </ol>
+      </div>
     </Card>
   );
 };

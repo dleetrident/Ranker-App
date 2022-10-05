@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { heroesActions } from "../store/heroes-slice";
 import Button from "../UI/Button";
 import Card from "../UI/Card";
@@ -34,8 +35,21 @@ const Test = () => {
     setSecond(heroes[1]);
   }, [heroes]);
 
+  // Clicked Elo Handle
+
   const heroClickedHandler = (event) => {
-    dispatch(heroesActions.selectHero(event.target.id));
+    const heroesArr = [first, second];
+    let clickedId = event.target.id;
+
+    const winner = heroesArr.filter((hero) => {
+      return hero.id === clickedId;
+    });
+    const loser = heroesArr.filter((hero) => {
+      return hero.id !== clickedId;
+    });
+    dispatch(heroesActions.updateScore(winner));
+    dispatch(heroesActions.updateRating({ winner: winner, loser: loser }));
+
     dispatch(heroesActions.outputTwoHeroes("btnClicked"));
   };
 
