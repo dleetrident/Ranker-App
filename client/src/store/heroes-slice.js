@@ -1,4 +1,4 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import EloRating from "elo-rating";
 
 const heroesSlice = createSlice({
@@ -33,7 +33,7 @@ const heroesSlice = createSlice({
           state.listProgress = 0;
         }
       } else {
-        // sort by score before /RankComplete renders
+        // sort by rating and score before /RankComplete renders upon listCompletion reaching 23 (24 cycles)
         state.heroesList.sort((a, b) => {
           if (a.score === b.score) {
             return b.rating - a.rating;
@@ -58,9 +58,9 @@ const heroesSlice = createSlice({
       const winner = action.payload[0];
       console.log(winner);
       // update score
-      const selectedHero = state.heroesList.map((hero) => {
+      state.heroesList.forEach((hero) => {
         if (hero.id === winner.id) {
-          return (hero.score = hero.score + 1);
+          hero.score = hero.score + 1;
         }
       });
     },
@@ -70,14 +70,14 @@ const heroesSlice = createSlice({
       // update rating
 
       var result = EloRating.calculate(winner.rating, loser.rating);
-      const updateWinner = state.heroesList.map((hero) => {
+      state.heroesList.forEach((hero) => {
         if (hero.id === winner.id) {
-          return (hero.rating = result.playerRating);
+          hero.rating = result.playerRating;
         }
       });
-      const updateLoser = state.heroesList.map((hero) => {
+      state.heroesList.forEach((hero) => {
         if (hero.id === loser.id) {
-          return (hero.rating = result.opponentRating);
+          hero.rating = result.opponentRating;
         }
       });
       console.log([

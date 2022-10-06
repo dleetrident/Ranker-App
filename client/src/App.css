@@ -69,3 +69,11 @@ button {
 p {
   font-family: "TextFont";
 }
+
+table {
+  border-collapse: collapse;
+}
+th,
+td {
+  border: 1px solid rgba(6, 39, 67, 0.5);
+}
