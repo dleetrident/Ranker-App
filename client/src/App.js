@@ -6,6 +6,7 @@ import { heroesActions, sendRatingData } from "./store/heroes-slice";
 import Test from "./components/Test";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "./UI/Button";
+import Header from "./UI/Header";
 
 function App() {
   const dispatch = useDispatch();
@@ -48,15 +49,6 @@ function App() {
     dispatch(heroesActions.inputHeroes(heroes));
     dispatch(heroesActions.outputTwoHeroes());
     setStart(true);
-    document.body.requestFullscreen();
-    window.screen.orientation
-      .lock("landscape-primary")
-      .then(function () {
-        alert("Locked");
-      })
-      .catch(function (error) {
-        alert(error);
-      });
   };
 
   // useEffect(() => {
@@ -67,6 +59,7 @@ function App() {
   // }, [dispatch, heroes]);
   return (
     <div className="App">
+      <Header />
       {start ? (
         <Test />
       ) : (

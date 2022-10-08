@@ -5,7 +5,7 @@
   padding: 5px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .container {
     flex-direction: column;
   }
@@ -54,17 +54,23 @@
 }
 
 .vsdiv {
+  align-self: center;
   color: white;
   /* box-shadow: 0 0px 10px #6fe8f5; */
   /* background-color: rgba(22, 27, 28, 0.95); */
   border-radius: 100%;
   display: inline-block;
-  margin-top: 35%;
+  margin-top: 0%;
   position: relative;
   max-width: 120px;
   max-height: 120px;
 }
 .vslogo {
   max-width: 100%;
+}
+@media (min-width: 701px) {
+  .vsdiv {
+    margin-top: 35%;
+  }
 }
 /* TO DO: Move images to dynamic <img /> elements, and use object-fit css instead of background image */

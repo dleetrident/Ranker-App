@@ -72,8 +72,21 @@ p {
 
 table {
   border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
 }
 th,
 td {
   border: 1px solid rgba(6, 39, 67, 0.5);
+}
+
+@media (max-width: 800px) {
+  h1,
+  h3,
+  button,
+  th,
+  td,
+  p {
+    font-size: 80%;
+  }
 }

@@ -1,7 +1,9 @@
+import classes from "./Table.module.css";
+
 const Table = (props) => {
   // Table used dynamically for /RankComplete results
   return (
-    <div>
+    <div className={classes.tableContainer}>
       <table>
         <thead>
           <tr>

@@ -12,6 +12,7 @@ const Test = () => {
   const dispatch = useDispatch();
   const heroesRdx = useSelector((store) => store.heroes);
   const { outputHeroes: heroes, listComplete } = heroesRdx;
+  const screenWidth = window.innerWidth;
 
   const [first, setFirst] = useState({
     id: "",
