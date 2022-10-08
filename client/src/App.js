@@ -48,6 +48,15 @@ function App() {
     dispatch(heroesActions.inputHeroes(heroes));
     dispatch(heroesActions.outputTwoHeroes());
     setStart(true);
+    document.body.requestFullscreen();
+    window.screen.orientation
+      .lock("landscape-primary")
+      .then(function () {
+        alert("Locked");
+      })
+      .catch(function (error) {
+        alert(error);
+      });
   };
 
   // useEffect(() => {
