@@ -27,7 +27,7 @@
     margin: 0%;
   }
 }
-@media (max-width: 350px) {
+@media (max-width: 375px) {
   .card {
     width: 81%;
   }
