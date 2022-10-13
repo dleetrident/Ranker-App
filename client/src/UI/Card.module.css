@@ -6,9 +6,8 @@
   color: white;
   width: 80%;
   margin: 5% auto;
+  padding: 30px 2% 30px 2%;
 
-  padding-top: 30px;
-  padding-bottom: 30px;
   text-align: center;
   animation: fadein 1s;
 }
