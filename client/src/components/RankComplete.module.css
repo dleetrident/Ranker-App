@@ -1,13 +1,15 @@
 .parentdiv {
-  position: absolute;
-  right: 0px;
-  left: 70px;
+  padding: 0;
+  align-content: center;
+  overflow-x: hidden;
+  width: 100%;
 }
 @media (max-width: 750px) {
   .parentdiv {
-    left: 0px;
-    right: 0px;
-    margin: 0%;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
   }
 }
 

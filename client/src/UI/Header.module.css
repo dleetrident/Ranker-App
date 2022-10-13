@@ -14,9 +14,8 @@
   background-image: url("../resources/images/blue-border.png");
 }
 
-@media (max-width: 420px) {
+@media (max-width: 700px) {
   .headerSection {
-    margin-bottom: 5px;
     width: 100%;
   }
 }

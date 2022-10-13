@@ -55,7 +55,7 @@ const Test = () => {
   };
 
   return (
-    <section>
+    <React.Fragment>
       {listComplete ? (
         <RankComplete />
       ) : (
@@ -117,7 +117,7 @@ const Test = () => {
       </div> */}
         </div>
       )}
-    </section>
+    </React.Fragment>
   );
 };
 
