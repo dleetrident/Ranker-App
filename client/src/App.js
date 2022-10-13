@@ -7,6 +7,7 @@ import Test from "./components/Test";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "./UI/Button";
 import Header from "./UI/Header";
+import Card from "./UI/Card";
 
 function App() {
   const dispatch = useDispatch();
@@ -64,7 +65,17 @@ function App() {
         <Test />
       ) : (
         <div className="center">
-          <Button onClick={startAppHandler}>START</Button>
+          <Card>
+            <h3>
+              <b>Note:</b>
+            </h3>
+            <p>
+              This App is for educational purposes only, as part of a practice
+              portfolio, and will not be displayed for use by the public or for
+              any commercial purposes whatsoever.
+            </p>
+            <Button onClick={startAppHandler}>START</Button>
+          </Card>
         </div>
       )}
     </div>

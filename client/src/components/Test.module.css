@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  padding: 5%;
 }
 
 @media (max-width: 700px) {
@@ -70,7 +71,7 @@
 }
 @media (min-width: 701px) {
   .vsdiv {
-    margin-top: 35%;
+    margin-top: 1px;
   }
 }
 /* TO DO: Move images to dynamic <img /> elements, and use object-fit css instead of background image */
