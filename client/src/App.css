@@ -55,7 +55,7 @@ body {
   height: 130%;
   margin: 0 auto;
   padding: 0;
-  overflow-x: hidden;
+
   position: relative;
 }
 
@@ -84,7 +84,7 @@ td {
   border: 1px solid rgba(6, 39, 67, 0.5);
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   h1,
   h3,
   button,

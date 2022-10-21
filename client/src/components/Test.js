@@ -62,7 +62,7 @@ const Test = () => {
         <div className={classes.container}>
           {" "}
           <Card>
-            <div className={classes.herodivleft}>
+            <div className={classes.herodiv}>
               <img
                 className={classes.image}
                 src={require(`../resources/images/${
@@ -70,28 +70,22 @@ const Test = () => {
                 }`)}
                 alt={first.id}
               />
-
-              <h1>{first.name}</h1>
+              <h3>{first.name}</h3>
               <Button id={first.id} onClick={heroClickedHandler}>
                 Pick Hero
               </Button>
             </div>
+
             <HeroDetails
               id={first.id}
               powers={first.powers}
               rating={first.rating}
             />
           </Card>
-          <div className={classes.vsdiv}>
-            <img
-              className={classes.vslogo}
-              src={require("../resources/images/vs.png")}
-              alt="VS"
-            />
-          </div>
+          <div style={{ width: "30px" }}></div>
           <Card>
             {" "}
-            <div className={classes.herodivright}>
+            <div className={classes.herodiv}>
               <img
                 className={classes.image}
                 src={require(`../resources/images/${
@@ -100,7 +94,7 @@ const Test = () => {
                 alt={second.id}
               />
 
-              <h1>{second.name}</h1>
+              <h3>{second.name}</h3>
               <Button id={second.id} onClick={heroClickedHandler}>
                 Pick Hero
               </Button>
