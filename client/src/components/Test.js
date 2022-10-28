@@ -11,8 +11,7 @@ import classes from "./Test.module.css";
 const Test = () => {
   const dispatch = useDispatch();
   const heroesRdx = useSelector((store) => store.heroes);
-  const { outputHeroes: heroes, listComplete } = heroesRdx;
-  const screenWidth = window.innerWidth;
+  const { outputHeroes: heroes, listComplete, stage } = heroesRdx;
 
   const [first, setFirst] = useState({
     id: "",
@@ -51,11 +50,12 @@ const Test = () => {
     dispatch(heroesActions.updateScore(winner));
     dispatch(heroesActions.updateRating({ winner: winner, loser: loser }));
 
-    dispatch(heroesActions.outputTwoHeroes("btnClicked"));
+    dispatch(heroesActions.outputHeroes());
   };
 
   return (
     <React.Fragment>
+      <h3 className={classes.stageheader}>{stage}</h3>
       {listComplete ? (
         <RankComplete />
       ) : (

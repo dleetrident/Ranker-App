@@ -48,7 +48,7 @@ function App() {
 
   const startAppHandler = () => {
     dispatch(heroesActions.inputHeroes(heroes));
-    dispatch(heroesActions.outputTwoHeroes());
+    dispatch(heroesActions.outputHeroes());
     setStart(true);
   };
 

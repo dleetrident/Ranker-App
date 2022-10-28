@@ -7,6 +7,7 @@ import classes from "./RankComplete.module.css";
 
 const RankComplete = () => {
   const scoreList = useSelector((store) => store.heroes.heroesList);
+  const newList = [...scoreList.groupA, ...scoreList.groupB];
   const ratingList = useSelector((store) => store.heroes.ratingList);
   console.log(ratingList);
   const dispatch = useDispatch();
@@ -48,10 +49,10 @@ const RankComplete = () => {
                   </td>
                   <td>{hero.name}</td>
                   <td>{hero.rating}</td>
-                  <td>&rarr;</td>
+                  <td>&larr;</td>
                   <td>
                     {
-                      scoreList.find(
+                      newList.find(
                         (ratingListHero) => hero.id === ratingListHero.id
                       ).rating
                     }
@@ -74,7 +75,7 @@ const RankComplete = () => {
                 "New Rating",
               ]}>
               <br />
-              {scoreList.map((hero, index) => (
+              {newList.map((hero, index) => (
                 <tr key={hero.id}>
                   <td>{index + 1}</td>
                   <td>

@@ -57,4 +57,11 @@
     margin-top: 1px;
   }
 }
+
+.stageheader {
+  color: white;
+  background-color: black;
+  width: 8%;
+  margin: 0 auto 0;
+}
 /* TO DO: Move images to dynamic <img /> elements, and use object-fit css instead of background image */
